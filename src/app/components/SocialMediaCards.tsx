@@ -3245,18 +3245,9 @@ function SimpleTruthCard() {
             lineHeight: 1.1,
             color: 'var(--primary-text)'
           }}>
-            You can't manage<br />
-            what you<br />
-            <span style={{ color: 'var(--accent)' }}>don't track</span>
+            If tech can scan your tires,<br />
+            <span style={{ color: 'var(--accent)' }}>why can't you?</span>
           </h3>
-          <p className="mb-8" style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.6,
-            color: 'var(--muted-text)',
-            maxWidth: '360px'
-          }}>
-            Simple truth for serious racers.
-          </p>
           <img src={logoImg} alt="Tire Track" className="h-12" />
         </div>
       </div>

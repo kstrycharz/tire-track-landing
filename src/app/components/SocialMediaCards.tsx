@@ -1,5 +1,5 @@
 import { Download, Loader2 } from 'lucide-react';
-import { toPng } from 'html-to-image';
+import { toBlob } from 'html-to-image';
 import { useRef, useState } from 'react';
 import logoImg from '../../imports/logo.png';
 import appScreen1 from '../../imports/IMG_1411.PNG';
@@ -3450,11 +3450,19 @@ function CardWrapper({ title, children }: { title: string; children: React.React
     if (!cardRef.current || exporting) return;
     setExporting(true);
     try {
-      const dataUrl = await toPng(cardRef.current, { pixelRatio: 2, cacheBust: true });
+      const blob = await toBlob(cardRef.current, { pixelRatio: 2 });
+      if (!blob) throw new Error('Failed to generate image');
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = dataUrl;
+      a.href = url;
       a.download = `${title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`;
+      document.body.appendChild(a);
       a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Export failed:', err);
+      alert('Export failed — try again or check the browser console for details.');
     } finally {
       setExporting(false);
     }

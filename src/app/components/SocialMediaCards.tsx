@@ -2791,7 +2791,7 @@ function CompetitiveEdgeCard() {
           }}>
             That's the competitive edge. Data over instinct. Precision over guesswork.
           </p>
-          <img src={logoImg} alt="Tire Track" className="h-10" />
+          <img src={logoImg} alt="Tire Track" className="h-20" />
         </div>
       </div>
     </div>

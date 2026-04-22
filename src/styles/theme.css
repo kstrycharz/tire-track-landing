@@ -1,0 +1,48 @@
+:root {
+  /* Tire Track Color System */
+  --page-bg: #0A0B0D;
+  --card-surface: #121418;
+  --input-surface: #191C21;
+  --hover-surface: #22262C;
+  --primary-text: #F2F3F5;
+  --muted-text: rgba(242, 243, 245, 0.64);
+  --dim-text: rgba(242, 243, 245, 0.42);
+  --border: rgba(255, 255, 255, 0.07);
+  --strong-border: rgba(255, 255, 255, 0.12);
+  --accent: oklch(0.72 0.16 155);
+  --accent-glow: oklch(0.72 0.16 155 / 0.45);
+  --accent-soft: oklch(0.72 0.16 155 / 0.14);
+  --tire-fresh: oklch(0.72 0.16 155);
+  --tire-mid: oklch(0.78 0.15 75);
+  --tire-worn: oklch(0.68 0.22 25);
+
+  /* Typography */
+  --font-rajdhani: 'Rajdhani', sans-serif;
+  --font-chakra: 'Chakra Petch', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@theme inline {
+  --font-family-rajdhani: var(--font-rajdhani);
+  --font-family-chakra: var(--font-chakra);
+  --font-family-inter: var(--font-inter);
+  --font-family-mono: var(--font-mono);
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--page-bg);
+    color: var(--primary-text);
+    font-family: var(--font-inter);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

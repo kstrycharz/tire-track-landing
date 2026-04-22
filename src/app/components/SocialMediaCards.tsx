@@ -268,11 +268,13 @@ export function SocialMediaCards() {
 function HeroQuoteCard() {
   return (
     <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px' }}>
-      <div className="w-full h-full overflow-hidden relative" style={{
+      <div className="w-full h-full relative" style={{
         background: 'var(--page-bg)',
         borderRadius: '14px'
       }}>
         <div className="absolute inset-0" style={{
+          borderRadius: '14px',
+          overflow: 'hidden',
           backgroundImage: 'repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 40px), repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 40px)'
         }}></div>
         <div className="relative h-full flex flex-col items-center justify-center p-12 text-center">
@@ -499,11 +501,11 @@ function StoryCard() {
 function TwitterCard() {
   return (
     <div className="w-full" style={{ aspectRatio: '16/9', maxWidth: '600px' }}>
-      <div className="w-full h-full overflow-hidden" style={{
+      <div className="w-full h-full" style={{
         background: 'var(--card-surface)',
         borderRadius: '14px'
       }}>
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-20">
+        <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-20" style={{ borderRadius: '0 14px 14px 0', overflow: 'hidden' }}>
           <img
             src="https://images.unsplash.com/photo-1752348510978-4575000c0e29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600"
             alt=""
@@ -598,11 +600,11 @@ function TestimonialCard() {
 function IPhoneMockup1() {
   return (
     <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px' }}>
-      <div className="w-full h-full relative overflow-hidden" style={{
+      <div className="w-full h-full relative" style={{
         background: 'var(--page-bg)',
         borderRadius: '14px'
       }}>
-        <div className="absolute inset-0 opacity-40">
+        <div className="absolute inset-0 opacity-40" style={{ borderRadius: '14px', overflow: 'hidden' }}>
           <img
             src="https://images.unsplash.com/photo-1752348510978-4575000c0e29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800"
             alt=""
@@ -2760,11 +2762,11 @@ function SeriesTravelerCard() {
 function CompetitiveEdgeCard() {
   return (
     <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px' }}>
-      <div className="w-full h-full relative overflow-hidden" style={{
+      <div className="w-full h-full relative" style={{
         background: 'var(--page-bg)',
         borderRadius: '14px'
       }}>
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 opacity-30" style={{ borderRadius: '14px', overflow: 'hidden' }}>
           <img
             src="https://images.unsplash.com/photo-1752348510978-4575000c0e29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800"
             alt=""
@@ -3226,11 +3228,13 @@ function WhyWeBuiltCard() {
 function SimpleTruthCard() {
   return (
     <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px' }}>
-      <div className="w-full h-full relative overflow-hidden" style={{
+      <div className="w-full h-full relative" style={{
         background: 'var(--page-bg)',
         borderRadius: '14px'
       }}>
         <div className="absolute inset-0" style={{
+          borderRadius: '14px',
+          overflow: 'hidden',
           backgroundImage: 'repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 40px), repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 40px)'
         }}></div>
         <div className="relative h-full flex flex-col items-center justify-center p-12 text-center">
@@ -3450,6 +3454,7 @@ function CardWrapper({ title, children }: { title: string; children: React.React
     if (!cardRef.current || exporting) return;
     setExporting(true);
     try {
+      await document.fonts.ready;
       const blob = await toBlob(cardRef.current, { pixelRatio: 2 });
       if (!blob) throw new Error('Failed to generate image');
       const url = URL.createObjectURL(blob);

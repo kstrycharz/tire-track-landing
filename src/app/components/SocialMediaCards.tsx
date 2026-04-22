@@ -1,4 +1,6 @@
-import { Download } from 'lucide-react';
+import { Download, Loader2 } from 'lucide-react';
+import { toPng } from 'html-to-image';
+import { useRef, useState } from 'react';
 import logoImg from '../../imports/logo.png';
 import appScreen1 from '../../imports/IMG_1411.PNG';
 import appScreen2 from '../../imports/IMG_1409.PNG';
@@ -3440,9 +3442,22 @@ function TechComparisonCard() {
 }
 
 function CardWrapper({ title, children }: { title: string; children: React.ReactNode }) {
-  const handleDownload = (e: React.MouseEvent) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [exporting, setExporting] = useState(false);
+
+  const handleDownload = async (e: React.MouseEvent) => {
     e.preventDefault();
-    alert('Download functionality would be implemented here. For now, take a screenshot of the card!');
+    if (!cardRef.current || exporting) return;
+    setExporting(true);
+    try {
+      const dataUrl = await toPng(cardRef.current, { pixelRatio: 2, cacheBust: true });
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = `${title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`;
+      a.click();
+    } finally {
+      setExporting(false);
+    }
   };
 
   return (
@@ -3462,26 +3477,24 @@ function CardWrapper({ title, children }: { title: string; children: React.React
         <div className="flex gap-2">
           <button
             onClick={handleDownload}
+            disabled={exporting}
             className="p-2 transition-all hover:scale-105"
             style={{
               background: 'var(--input-surface)',
               borderRadius: '6px',
-              color: 'var(--muted-text)'
+              color: 'var(--muted-text)',
+              opacity: exporting ? 0.5 : 1
             }}
-            title="Download (screenshot for now)"
+            title="Download as PNG"
           >
-            <Download className="w-4 h-4" />
+            {exporting
+              ? <Loader2 className="w-4 h-4 animate-spin" />
+              : <Download className="w-4 h-4" />}
           </button>
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center" ref={cardRef}>
         {children}
-      </div>
-      <div className="mt-4 text-center" style={{
-        fontSize: '0.75rem',
-        color: 'var(--dim-text)'
-      }}>
-        Screenshot this card to use in your social media posts
       </div>
     </div>
   );

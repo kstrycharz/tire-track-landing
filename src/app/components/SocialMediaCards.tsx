@@ -1169,8 +1169,8 @@ function DualIPhoneCard() {
               <img src={appScreen2} alt="App" className="w-44 rounded-xl" />
             </div>
           </div>
-          <div className="flex items-center justify-center pt-4">
-            <img src={logoImg} alt="Tire Track" className="h-6" />
+          <div className="flex items-center justify-center pt-4 pb-2">
+            <img src={logoImg} alt="Tire Track" className="h-10" />
           </div>
         </div>
       </div>

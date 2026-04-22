@@ -1235,7 +1235,7 @@ function FeatureListCard() {
               </div>
             </div>
             <div>
-              <img src={logoImg} alt="Tire Track" className="h-6" />
+              <img src={logoImg} alt="Tire Track" className="h-12" />
             </div>
           </div>
           <div className="flex items-center justify-center">

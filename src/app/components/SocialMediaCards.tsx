@@ -1356,7 +1356,7 @@ function TripleScreenCard() {
             </div>
           </div>
           <div className="flex items-center justify-center pt-4">
-            <img src={logoImg} alt="Tire Track" className="h-6" />
+            <img src={logoImg} alt="Tire Track" className="h-12" />
           </div>
         </div>
       </div>

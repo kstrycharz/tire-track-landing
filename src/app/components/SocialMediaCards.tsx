@@ -1464,7 +1464,7 @@ function ProblemAgitationCard() {
           <div className="flex items-center justify-between pt-6" style={{
             borderTop: '1px solid var(--border)'
           }}>
-            <img src={logoImg} alt="Tire Track" className="h-6" />
+            <img src={logoImg} alt="Tire Track" className="h-12" />
             <div style={{ color: 'var(--accent)', fontSize: '0.875rem', fontWeight: 600 }}>
               Get Started Free
             </div>

@@ -5,45 +5,38 @@ import appScreen1 from '../imports/IMG_1411.PNG';
 import appScreen2 from '../imports/IMG_1409.PNG';
 import appScreen3 from '../imports/IMG_1418.jpg';
 import { SocialMediaCards } from './components/SocialMediaCards';
+import { MarketingPages } from './components/MarketingPages';
+
+type View = 'landing' | 'social' | 'marketing';
 
 export default function App() {
-  const [view, setView] = useState<'landing' | 'social'>('social');
+  const [view, setView] = useState<View>('marketing');
 
   return (
     <div className="min-h-screen" style={{ fontFamily: 'var(--font-inter)' }}>
       {/* View Switcher */}
       <div className="fixed top-4 right-4 z-50 flex gap-2">
-        <button
-          onClick={() => setView('landing')}
-          className="px-4 py-2 transition-all duration-200"
-          style={{
-            background: view === 'landing' ? 'var(--accent)' : 'var(--card-surface)',
-            color: view === 'landing' ? 'var(--page-bg)' : 'var(--muted-text)',
-            borderRadius: '10px',
-            border: '1px solid var(--border)',
-            fontWeight: 600,
-            fontSize: '0.875rem'
-          }}
-        >
-          Landing Page
-        </button>
-        <button
-          onClick={() => setView('social')}
-          className="px-4 py-2 transition-all duration-200"
-          style={{
-            background: view === 'social' ? 'var(--accent)' : 'var(--card-surface)',
-            color: view === 'social' ? 'var(--page-bg)' : 'var(--muted-text)',
-            borderRadius: '10px',
-            border: '1px solid var(--border)',
-            fontWeight: 600,
-            fontSize: '0.875rem'
-          }}
-        >
-          Social Media
-        </button>
+        {(['landing', 'social', 'marketing'] as View[]).map(v => (
+          <button
+            key={v}
+            onClick={() => setView(v)}
+            className="px-4 py-2 transition-all duration-200"
+            style={{
+              background: view === v ? 'var(--accent)' : 'var(--card-surface)',
+              color: view === v ? 'var(--page-bg)' : 'var(--muted-text)',
+              borderRadius: '10px',
+              border: '1px solid var(--border)',
+              fontWeight: 600,
+              fontSize: '0.875rem',
+              textTransform: 'capitalize'
+            }}
+          >
+            {v === 'landing' ? 'Landing' : v === 'social' ? 'Social Media' : 'Marketing'}
+          </button>
+        ))}
       </div>
 
-      {view === 'social' ? <SocialMediaCards /> : <LandingPage />}
+      {view === 'social' ? <SocialMediaCards /> : view === 'marketing' ? <MarketingPages /> : <LandingPage />}
     </div>
   );
 }

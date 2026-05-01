@@ -1131,11 +1131,12 @@ function ROICard() {
 
 function DualIPhoneCard() {
   return (
-    <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px' }}>
+    <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px', overflow: 'hidden' }}>
       <div className="w-full h-full" style={{
         background: 'linear-gradient(135deg, var(--card-surface) 0%, var(--page-bg) 50%, var(--card-surface) 100%)',
         borderRadius: '14px',
-        padding: '2rem'
+        padding: '2rem',
+        overflow: 'hidden'
       }}>
         <div className="h-full flex flex-col">
           <div className="text-center mb-4">
@@ -1182,11 +1183,12 @@ function DualIPhoneCard() {
 
 function FeatureListCard() {
   return (
-    <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px' }}>
+    <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px', overflow: 'hidden' }}>
       <div className="w-full h-full" style={{
         background: 'var(--card-surface)',
         borderRadius: '14px',
-        padding: '2.5rem'
+        padding: '2.5rem',
+        overflow: 'hidden'
       }}>
         <div className="h-full grid grid-cols-2 gap-6">
           <div className="flex flex-col justify-between">
@@ -1247,7 +1249,7 @@ function FeatureListCard() {
               background: 'linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))',
               boxShadow: '0 15px 40px rgba(0,0,0,0.4)'
             }}>
-              <img src={appScreen1} alt="App" className="w-full rounded-xl" />
+              <img src={appScreen1} alt="App" className="w-44 rounded-xl" />
             </div>
           </div>
         </div>
@@ -1258,11 +1260,12 @@ function FeatureListCard() {
 
 function UserQuoteCard() {
   return (
-    <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px' }}>
+    <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px', overflow: 'hidden' }}>
       <div className="w-full h-full" style={{
         background: 'var(--page-bg)',
         borderRadius: '14px',
-        padding: '3rem'
+        padding: '3rem',
+        overflow: 'hidden'
       }}>
         <div className="h-full flex flex-col justify-between">
           <div className="flex-1 flex items-center">
@@ -1271,7 +1274,7 @@ function UserQuoteCard() {
                 background: 'linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))',
                 boxShadow: '0 15px 40px rgba(0,0,0,0.4)'
               }}>
-                <img src={appScreen2} alt="App" className="w-full rounded-xl" />
+                <img src={appScreen2} alt="App" className="w-40 rounded-xl" />
               </div>
               <div>
                 <div className="mb-4" style={{
@@ -1316,11 +1319,12 @@ function UserQuoteCard() {
 
 function TripleScreenCard() {
   return (
-    <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px' }}>
+    <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px', overflow: 'hidden' }}>
       <div className="w-full h-full" style={{
         background: 'linear-gradient(135deg, var(--page-bg) 0%, var(--card-surface) 100%)',
         borderRadius: '14px',
-        padding: '2.5rem'
+        padding: '2.5rem',
+        overflow: 'hidden'
       }}>
         <div className="h-full flex flex-col">
           <div className="text-center mb-4">
@@ -2059,18 +2063,19 @@ function StopEarlyReplacementCard() {
 
 function RealRacerQuoteCard() {
   return (
-    <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px' }}>
+    <div className="w-full" style={{ aspectRatio: '1/1', maxWidth: '540px', overflow: 'hidden' }}>
       <div className="w-full h-full" style={{
         background: 'var(--page-bg)',
         borderRadius: '14px',
-        padding: '2.5rem'
+        padding: '2.5rem',
+        overflow: 'hidden'
       }}>
         <div className="h-full grid grid-cols-2 gap-6 items-center">
           <div className="p-2 rounded-2xl" style={{
             background: 'linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))',
             boxShadow: '0 15px 40px rgba(0,0,0,0.4)'
           }}>
-            <img src={appScreen1} alt="App" className="w-full rounded-xl" />
+            <img src={appScreen1} alt="App" className="w-40 rounded-xl" />
           </div>
           <div>
             <div className="mb-4" style={{
@@ -3448,14 +3453,25 @@ function CardWrapper({ title, children }: { title: string; children: React.React
       await document.fonts.ready;
       const blob = await toBlob(cardRef.current, { pixelRatio: 2 });
       if (!blob) throw new Error('Failed to generate image');
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      const filename = `${title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`;
+      const file = new File([blob], filename, { type: 'image/png' });
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: 'Tire Track — ' + title });
+      } else if (isMobile) {
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => URL.revokeObjectURL(url), 30000);
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
     } catch (err) {
       console.error('Export failed:', err);
       alert('Export failed — try again or check the browser console for details.');
@@ -3468,7 +3484,8 @@ function CardWrapper({ title, children }: { title: string; children: React.React
     <div className="p-6" style={{
       background: 'var(--card-surface)',
       borderRadius: '14px',
-      border: '1px solid var(--border)'
+      border: '1px solid var(--border)',
+      overflow: 'hidden'
     }}>
       <div className="flex items-center justify-between mb-4">
         <h3 style={{

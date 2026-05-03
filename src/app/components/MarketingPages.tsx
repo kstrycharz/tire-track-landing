@@ -6,72 +6,61 @@ import appScreen1 from '../../imports/IMG_1411.PNG';
 import appScreen2 from '../../imports/IMG_1409.PNG';
 import appScreen3 from '../../imports/IMG_1418.jpg';
 
+type MarketingTab = 'Widescreen' | 'Square' | 'Vertical' | 'Headers' | 'All';
+const MARKETING_TABS: MarketingTab[] = ['Widescreen', 'Square', 'Vertical', 'Headers', 'All'];
+
 export function MarketingPages() {
+  const [tab, setTab] = useState<MarketingTab>('Widescreen');
+
   return (
     <div className="min-h-screen py-12" style={{ background: 'var(--page-bg)' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-10">
-          <h1 className="mb-2" style={{
-            fontFamily: 'var(--font-rajdhani)',
-            fontWeight: 700,
-            fontSize: '2.5rem',
-            color: 'var(--primary-text)'
-          }}>
+        <div className="mb-6">
+          <h1 className="mb-1" style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '2.5rem', color: 'var(--primary-text)' }}>
             Marketing Pages
           </h1>
           <p style={{ color: 'var(--muted-text)' }}>
-            Full-page layouts built for screenshotting — pitch decks, app store, email headers, press kit.
+            Screenshot-ready layouts — pitch decks, app store, email headers, press kit.
           </p>
         </div>
 
+        {/* Tab bar */}
+        <div className="flex gap-2 overflow-x-auto pb-3 mb-8" style={{ scrollbarWidth: 'none' }}>
+          {MARKETING_TABS.map(t => (
+            <button key={t} onClick={() => setTab(t)} style={{
+              background: tab === t ? 'var(--accent)' : 'var(--card-surface)',
+              color: tab === t ? 'var(--page-bg)' : 'var(--muted-text)',
+              border: `1px solid ${tab === t ? 'transparent' : 'var(--border)'}`,
+              borderRadius: '100px', padding: '6px 16px', fontWeight: 600,
+              fontSize: '0.8rem', whiteSpace: 'nowrap', cursor: 'pointer', transition: 'all 0.15s'
+            }}>{t}</button>
+          ))}
+        </div>
+
         <div className="grid gap-10">
-          <PageWrapper title="App Store Feature Graphic — 1284×2778 (iPhone 15 Pro Max)">
-            <AppStoreHeroPage />
-          </PageWrapper>
+          {(tab === 'Widescreen' || tab === 'All') && <>
+            <PageWrapper title="Launch Announcement — 1600×900 (16:9)"><LaunchAnnouncementPage /></PageWrapper>
+            <PageWrapper title="Problem / Solution — 1600×900"><ProblemSolutionPage /></PageWrapper>
+            <PageWrapper title="Feature Showcase — 1600×900"><FeatureShowcasePage /></PageWrapper>
+            <PageWrapper title="Pitch Deck Slide — 1920×1080"><PitchDeckSlide /></PageWrapper>
+            <PageWrapper title="Pricing Overview — 1600×900"><PricingOverviewPage /></PageWrapper>
+            <PageWrapper title="Product Hunt Banner — 1270×760"><ProductHuntBanner /></PageWrapper>
+          </>}
 
-          <PageWrapper title="Product Hunt Banner — 1270×760">
-            <ProductHuntBanner />
-          </PageWrapper>
+          {(tab === 'Square' || tab === 'All') && <>
+            <PageWrapper title="App Store Screenshots — Side by Side"><AppStoreScreenshots /></PageWrapper>
+            <PageWrapper title="Onboarding Value Prop — 1080×1080"><OnboardingValueProp /></PageWrapper>
+          </>}
 
-          <PageWrapper title="Launch Announcement — 1600×900 (16:9 Widescreen)">
-            <LaunchAnnouncementPage />
-          </PageWrapper>
+          {(tab === 'Vertical' || tab === 'All') && <>
+            <PageWrapper title="App Store Feature Graphic — iPhone 15 Pro Max"><AppStoreHeroPage /></PageWrapper>
+            <PageWrapper title="Race Weekend Story — 1080×1920"><RaceWeekendStory /></PageWrapper>
+          </>}
 
-          <PageWrapper title="Problem / Solution — 1600×900">
-            <ProblemSolutionPage />
-          </PageWrapper>
-
-          <PageWrapper title="Feature Showcase — 1600×900">
-            <FeatureShowcasePage />
-          </PageWrapper>
-
-          <PageWrapper title="Pitch Deck Slide — 1920×1080">
-            <PitchDeckSlide />
-          </PageWrapper>
-
-          <PageWrapper title="Email Header — 600×300">
-            <EmailHeader />
-          </PageWrapper>
-
-          <PageWrapper title="Press Kit Hero — 1200×800">
-            <PressKitHero />
-          </PageWrapper>
-
-          <PageWrapper title="App Store Screenshots — Side by Side">
-            <AppStoreScreenshots />
-          </PageWrapper>
-
-          <PageWrapper title="Onboarding Value Prop — 1080×1080">
-            <OnboardingValueProp />
-          </PageWrapper>
-
-          <PageWrapper title="Pricing Overview — 1600×900">
-            <PricingOverviewPage />
-          </PageWrapper>
-
-          <PageWrapper title="Race Weekend Story — 1080×1920 (Vertical)">
-            <RaceWeekendStory />
-          </PageWrapper>
+          {(tab === 'Headers' || tab === 'All') && <>
+            <PageWrapper title="Email Header — 600×300"><EmailHeader /></PageWrapper>
+            <PageWrapper title="Press Kit Hero — 1200×800"><PressKitHero /></PageWrapper>
+          </>}
         </div>
       </div>
     </div>
@@ -82,8 +71,7 @@ function PageWrapper({ title, children }: { title: string; children: React.React
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [exporting, setExporting] = useState(false);
-  const [scale, setScale] = useState(1);
-  const [scaledHeight, setScaledHeight] = useState<number | null>(null);
+  const [preview, setPreview] = useState({ scale: 1, visW: 0, visH: 0 });
 
   useEffect(() => {
     const update = () => {
@@ -91,8 +79,7 @@ function PageWrapper({ title, children }: { title: string; children: React.React
       const card = ref.current;
       if (!container || !card) return;
       const s = Math.min(1, container.clientWidth / card.scrollWidth);
-      setScale(s);
-      setScaledHeight(card.scrollHeight * s);
+      setPreview({ scale: s, visW: card.scrollWidth * s, visH: card.scrollHeight * s });
     };
     const ro = new ResizeObserver(update);
     if (containerRef.current) ro.observe(containerRef.current);
@@ -170,16 +157,13 @@ function PageWrapper({ title, children }: { title: string; children: React.React
       </div>
       <div className="p-6" ref={containerRef}>
         <div style={{
-          position: 'relative',
-          height: scaledHeight !== null ? `${scaledHeight}px` : undefined,
+          width: preview.visW > 0 ? `${preview.visW}px` : '100%',
+          height: preview.visH > 0 ? `${preview.visH}px` : undefined,
           overflow: 'hidden'
         }}>
           <div style={{
-            transform: scale < 1 ? `scale(${scale})` : undefined,
-            transformOrigin: 'top left',
-            position: scale < 1 ? 'absolute' : undefined,
-            top: 0,
-            left: 0
+            transform: preview.scale < 1 ? `scale(${preview.scale})` : undefined,
+            transformOrigin: 'top left'
           }}>
             <div ref={ref}>
               {children}
@@ -264,7 +248,7 @@ function AppStoreHeroPage() {
           boxShadow: '0 24px 64px rgba(0,0,0,0.7)',
           transform: 'rotate(-4deg) translateY(8px)'
         }}>
-          <img src={appScreen3} alt="Scan" style={{ width: '100px', borderRadius: '14px', display: 'block' }} />
+          <img loading="eager" src={appScreen3} alt="Scan" style={{ width: '100px', borderRadius: '14px', display: 'block' }} />
         </div>
         <div style={{
           background: 'linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05))',
@@ -273,7 +257,7 @@ function AppStoreHeroPage() {
           boxShadow: '0 32px 80px rgba(0,0,0,0.8)',
           zIndex: 2
         }}>
-          <img src={appScreen1} alt="Garage" style={{ width: '130px', borderRadius: '14px', display: 'block' }} />
+          <img loading="eager" src={appScreen1} alt="Garage" style={{ width: '130px', borderRadius: '14px', display: 'block' }} />
         </div>
         <div style={{
           background: 'linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04))',
@@ -282,7 +266,7 @@ function AppStoreHeroPage() {
           boxShadow: '0 24px 64px rgba(0,0,0,0.7)',
           transform: 'rotate(4deg) translateY(8px)'
         }}>
-          <img src={appScreen2} alt="Session" style={{ width: '100px', borderRadius: '14px', display: 'block' }} />
+          <img loading="eager" src={appScreen2} alt="Session" style={{ width: '100px', borderRadius: '14px', display: 'block' }} />
         </div>
       </div>
       <div style={{ height: '32px', background: 'linear-gradient(to top, var(--page-bg), transparent)' }} />
@@ -326,13 +310,13 @@ function ProductHuntBanner() {
         gap: '10px',
         alignItems: 'flex-end'
       }}>
-        <img src={appScreen3} alt="" style={{
+        <img loading="eager" src={appScreen3} alt="" style={{
           width: '90px',
           borderRadius: '14px',
           boxShadow: '0 20px 48px rgba(0,0,0,0.7)',
           transform: 'rotate(-3deg)'
         }} />
-        <img src={appScreen1} alt="" style={{
+        <img loading="eager" src={appScreen1} alt="" style={{
           width: '110px',
           borderRadius: '14px',
           boxShadow: '0 28px 56px rgba(0,0,0,0.8)'
@@ -477,13 +461,13 @@ function LaunchAnnouncementPage() {
         gap: '20px',
         padding: '32px'
       }}>
-        <img src={appScreen3} alt="" style={{
+        <img loading="eager" src={appScreen3} alt="" style={{
           width: '140px',
           borderRadius: '18px',
           boxShadow: '0 24px 56px rgba(0,0,0,0.7)',
           transform: 'rotate(-5deg) translateY(12px)'
         }} />
-        <img src={appScreen1} alt="" style={{
+        <img loading="eager" src={appScreen1} alt="" style={{
           width: '175px',
           borderRadius: '22px',
           boxShadow: '0 32px 72px rgba(0,0,0,0.8)',
@@ -690,13 +674,13 @@ function FeatureShowcasePage() {
           gap: '12px',
           paddingBottom: '0'
         }}>
-          <img src={appScreen2} alt="" style={{
+          <img loading="eager" src={appScreen2} alt="" style={{
             width: '130px',
             borderRadius: '18px',
             boxShadow: '0 20px 48px rgba(0,0,0,0.7)',
             transform: 'rotate(-3deg) translateY(16px)'
           }} />
-          <img src={appScreen1} alt="" style={{
+          <img loading="eager" src={appScreen1} alt="" style={{
             width: '160px',
             borderRadius: '22px',
             boxShadow: '0 28px 64px rgba(0,0,0,0.85)'
@@ -826,7 +810,7 @@ function EmailHeader() {
         </p>
       </div>
       <div style={{ padding: '32px 40px 32px 0', display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}>
-        <img src={appScreen1} alt="" style={{
+        <img loading="eager" src={appScreen1} alt="" style={{
           width: '110px',
           borderRadius: '14px',
           boxShadow: '0 16px 40px rgba(0,0,0,0.7)'
@@ -1195,7 +1179,7 @@ function RaceWeekendStory() {
           ))}
         </div>
         <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-          <img src={appScreen1} alt="App" style={{
+          <img loading="eager" src={appScreen1} alt="App" style={{
             width: '180px',
             borderRadius: '18px',
             boxShadow: '0 24px 56px rgba(0,0,0,0.8)'

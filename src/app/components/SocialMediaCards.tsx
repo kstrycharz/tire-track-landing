@@ -6,259 +6,120 @@ import appScreen1 from '../../imports/IMG_1411.PNG';
 import appScreen2 from '../../imports/IMG_1409.PNG';
 import appScreen3 from '../../imports/IMG_1418.jpg';
 
+type SocialTab = 'New' | 'Mockups' | 'Quotes' | 'Features' | 'Data' | 'All';
+const SOCIAL_TABS: SocialTab[] = ['New', 'Mockups', 'Quotes', 'Features', 'Data', 'All'];
+
 export function SocialMediaCards() {
+  const [tab, setTab] = useState<SocialTab>('New');
+
   return (
     <div className="min-h-screen py-12" style={{ background: 'var(--page-bg)' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="mb-2" style={{
+        <div className="mb-6">
+          <h1 className="mb-1" style={{
             fontFamily: 'var(--font-rajdhani)',
             fontWeight: 700,
             fontSize: '2.5rem',
             color: 'var(--primary-text)'
           }}>
-            Social Media Marketing Assets
+            Social Media Assets
           </h1>
           <p style={{ color: 'var(--muted-text)' }}>
-            Ready-to-share graphics for Instagram, Twitter, Facebook, and LinkedIn
+            Square 1080×1080 cards for Instagram, Twitter, Facebook, and LinkedIn
           </p>
         </div>
 
+        {/* Tab bar */}
+        <div className="flex gap-2 overflow-x-auto pb-3 mb-8" style={{ scrollbarWidth: 'none' }}>
+          {SOCIAL_TABS.map(t => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              style={{
+                background: tab === t ? 'var(--accent)' : 'var(--card-surface)',
+                color: tab === t ? 'var(--page-bg)' : 'var(--muted-text)',
+                border: `1px solid ${tab === t ? 'transparent' : 'var(--border)'}`,
+                borderRadius: '100px',
+                padding: '6px 16px',
+                fontWeight: 600,
+                fontSize: '0.8rem',
+                whiteSpace: 'nowrap',
+                cursor: 'pointer',
+                transition: 'all 0.15s'
+              }}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+
         <div className="grid gap-8">
-          {/* Hero Quote Card - Square (1080x1080) */}
-          <CardWrapper title="Hero Quote - Instagram Square (1080x1080)">
-            <HeroQuoteCard />
-          </CardWrapper>
+          {/* ── NEW ───────────────────────────────────────────── */}
+          <CardWrapper activeTab={tab} category="New" title="Download Free — Square (1080x1080)"><DownloadCTACard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="New" title="Race Day Ready — Square (1080x1080)"><RaceDayReadyCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="New" title="Scan in 2 Seconds — Square (1080x1080)"><QuickScanCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="New" title="Before vs After — Square (1080x1080)"><BeforeAfterCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="New" title="Season Recap — Square (1080x1080)"><SeasonRecapCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="New" title="Your Tire Vault — Square (1080x1080)"><TireVaultCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="New" title="14 Day Free Trial — Square (1080x1080)"><FreeTrialCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="New" title="Garage on Your Phone — Square (1080x1080)"><GaragePhoneCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="New" title="Never Guess Again — Square (1080x1080)"><NeverGuessCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="New" title="Team Aligned — Square (1080x1080)"><TeamAlignedCard /></CardWrapper>
 
-          {/* Feature Highlight Card */}
-          <CardWrapper title="Feature Highlight - Instagram Square (1080x1080)">
-            <FeatureCard />
-          </CardWrapper>
+          {/* ── MOCKUPS ───────────────────────────────────────── */}
+          <CardWrapper activeTab={tab} category="Mockups" title="iPhone Mockup - Garage View (1080x1080)"><IPhoneMockup1 /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="iPhone Mockup - Session History (1080x1080)"><IPhoneMockup2 /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="iPhone Mockup - Scan Feature (1080x1080)"><IPhoneMockup3 /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="Dual iPhone Mockup (1080x1080)"><DualIPhoneCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="Triple Screenshot (1080x1080)"><TripleScreenCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="Minimalist Hero (1080x1080)"><MinimalHeroCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="Feature List with App (1080x1080)"><FeatureListCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="User Quote with App (1080x1080)"><UserQuoteCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="Real Racer Quote (1080x1080)"><RealRacerQuoteCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="Session Rating UI (1080x1080)"><SessionRatingCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="Scan Demo (1080x1080)"><ScanDemoCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Mockups" title="Instagram Story / Reel (1080x1920)"><StoryCard /></CardWrapper>
 
-          {/* Stat Card */}
-          <CardWrapper title="Problem Statement - Instagram Square (1080x1080)">
-            <StatCard />
-          </CardWrapper>
+          {/* ── QUOTES ────────────────────────────────────────── */}
+          <CardWrapper activeTab={tab} category="Quotes" title="Hero Quote (1080x1080)"><HeroQuoteCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Testimonial / Quote (1080x1080)"><TestimonialCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Weekend Racer (1080x1080)"><WeekendWarriorCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Paddock Chaos (1080x1080)"><PaddockSceneCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="First Race Day (1080x1080)"><FirstRaceDayCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Competitive Advantage (1080x1080)"><CompetitiveEdgeCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Simple Truth (1080x1080)"><SimpleTruthCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Why We Built This (1080x1080)"><WhyWeBuiltCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Twitter/X - Landscape (1200x675)"><TwitterCard /></CardWrapper>
 
-          {/* Story/Reel Format - Vertical (1080x1920) */}
-          <CardWrapper title="Instagram Story / Reel - Vertical (1080x1920)">
-            <StoryCard />
-          </CardWrapper>
+          {/* ── FEATURES ──────────────────────────────────────── */}
+          <CardWrapper activeTab={tab} category="Features" title="Feature Highlight (1080x1080)"><FeatureCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Problem Statement (1080x1080)"><StatCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Team Feature (1080x1080)"><TeamFeatureCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Know Your Heat Cycles (1080x1080)"><HeatCycleCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Race Day Use Case (1080x1080)"><UseCaseCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Track Multiple Compounds (1080x1080)"><CompoundTrackingCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Tire Pressure Tracking (1080x1080)"><PressureLogCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Championship Season (1080x1080)"><ChampionshipCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Mechanic's Tool (1080x1080)"><MechanicPerspectiveCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Multi-Track Racing (1080x1080)"><SeriesTravelerCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Multi-Kart Teams (1080x1080)"><MultiKartFamilyCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="For Parents & Mechanics (1080x1080)"><ParentMechanicCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Pre-Race Prep (1080x1080)"><TrackDayPrepCard /></CardWrapper>
 
-          {/* Twitter/X Card - Landscape (1200x675) */}
-          <CardWrapper title="Twitter/X - Landscape (1200x675)">
-            <TwitterCard />
-          </CardWrapper>
-
-          {/* Testimonial Style Card */}
-          <CardWrapper title="Testimonial / Quote - Instagram Square (1080x1080)">
-            <TestimonialCard />
-          </CardWrapper>
-
-          {/* iPhone Mockup - Garage */}
-          <CardWrapper title="iPhone Mockup - Garage View - Instagram Square (1080x1080)">
-            <IPhoneMockup1 />
-          </CardWrapper>
-
-          {/* iPhone Mockup - Tire Details */}
-          <CardWrapper title="iPhone Mockup - Session History - Instagram Square (1080x1080)">
-            <IPhoneMockup2 />
-          </CardWrapper>
-
-          {/* iPhone Mockup - Scan */}
-          <CardWrapper title="iPhone Mockup - Scan Feature - Instagram Square (1080x1080)">
-            <IPhoneMockup3 />
-          </CardWrapper>
-
-          {/* Stats Grid */}
-          <CardWrapper title="By The Numbers - Instagram Square (1080x1080)">
-            <StatsGridCard />
-          </CardWrapper>
-
-          {/* Pain Point */}
-          <CardWrapper title="Pain Point - Instagram Square (1080x1080)">
-            <PainPointCard />
-          </CardWrapper>
-
-          {/* Team Feature */}
-          <CardWrapper title="Team Feature - Instagram Square (1080x1080)">
-            <TeamFeatureCard />
-          </CardWrapper>
-
-          {/* Use Case */}
-          <CardWrapper title="Race Day Use Case - Instagram Square (1080x1080)">
-            <UseCaseCard />
-          </CardWrapper>
-
-          {/* Value Prop */}
-          <CardWrapper title="ROI Message - Instagram Square (1080x1080)">
-            <ROICard />
-          </CardWrapper>
-
-          {/* Side by Side iPhone */}
-          <CardWrapper title="Dual iPhone Mockup - Instagram Square (1080x1080)">
-            <DualIPhoneCard />
-          </CardWrapper>
-
-          {/* Feature List with Screenshot */}
-          <CardWrapper title="Feature List with App - Instagram Square (1080x1080)">
-            <FeatureListCard />
-          </CardWrapper>
-
-          {/* Testimonial Style with App */}
-          <CardWrapper title="User Quote with App - Instagram Square (1080x1080)">
-            <UserQuoteCard />
-          </CardWrapper>
-
-          {/* 3 Screenshots Showcase */}
-          <CardWrapper title="Triple Screenshot - Instagram Square (1080x1080)">
-            <TripleScreenCard />
-          </CardWrapper>
-
-          {/* Minimalist iPhone Hero */}
-          <CardWrapper title="Minimalist Hero - Instagram Square (1080x1080)">
-            <MinimalHeroCard />
-          </CardWrapper>
-
-          {/* Problem Agitation */}
-          <CardWrapper title="Problem Agitation - Instagram Square (1080x1080)">
-            <ProblemAgitationCard />
-          </CardWrapper>
-
-          {/* Tech Comparison */}
-          <CardWrapper title="Tech Inspection Comparison - Instagram Square (1080x1080)">
-            <TechComparisonCard />
-          </CardWrapper>
-
-          {/* ROI Math Breakdown */}
-          <CardWrapper title="ROI Math Explained - Instagram Square (1080x1080)">
-            <ROIMathCard />
-          </CardWrapper>
-
-          {/* Maximize Tire Life */}
-          <CardWrapper title="Maximize Tire Investment - Instagram Square (1080x1080)">
-            <MaximizeTireLifeCard />
-          </CardWrapper>
-
-          {/* Session Counter */}
-          <CardWrapper title="Know Your Heat Cycles - Instagram Square (1080x1080)">
-            <HeatCycleCard />
-          </CardWrapper>
-
-          {/* Weekend Warrior */}
-          <CardWrapper title="Weekend Racer - Instagram Square (1080x1080)">
-            <WeekendWarriorCard />
-          </CardWrapper>
-
-          {/* Data Driven */}
-          <CardWrapper title="Data Driven Racing - Instagram Square (1080x1080)">
-            <DataDrivenCard />
-          </CardWrapper>
-
-          {/* Track Specific */}
-          <CardWrapper title="Track Memory - Instagram Square (1080x1080)">
-            <TrackMemoryCard />
-          </CardWrapper>
-
-          {/* Parent Mechanic */}
-          <CardWrapper title="For Parents & Mechanics - Instagram Square (1080x1080)">
-            <ParentMechanicCard />
-          </CardWrapper>
-
-          {/* Stop Buying Early */}
-          <CardWrapper title="Stop Early Replacement - Instagram Square (1080x1080)">
-            <StopEarlyReplacementCard />
-          </CardWrapper>
-
-          {/* App + Quote Combo */}
-          <CardWrapper title="Real Racer Quote - Instagram Square (1080x1080)">
-            <RealRacerQuoteCard />
-          </CardWrapper>
-
-          {/* Compound Tracking */}
-          <CardWrapper title="Track Multiple Compounds - Instagram Square (1080x1080)">
-            <CompoundTrackingCard />
-          </CardWrapper>
-
-          {/* Simple Truth */}
-          <CardWrapper title="Simple Truth - Instagram Square (1080x1080)">
-            <SimpleTruthCard />
-          </CardWrapper>
-
-          {/* Paddock Scene */}
-          <CardWrapper title="Paddock Chaos - Instagram Square (1080x1080)">
-            <PaddockSceneCard />
-          </CardWrapper>
-
-          {/* First Race Day */}
-          <CardWrapper title="First Race Day - Instagram Square (1080x1080)">
-            <FirstRaceDayCard />
-          </CardWrapper>
-
-          {/* Money on Track */}
-          <CardWrapper title="Money Left on Track - Instagram Square (1080x1080)">
-            <MoneyOnTrackCard />
-          </CardWrapper>
-
-          {/* Pressure Log */}
-          <CardWrapper title="Tire Pressure Tracking - Instagram Square (1080x1080)">
-            <PressureLogCard />
-          </CardWrapper>
-
-          {/* Championship Run */}
-          <CardWrapper title="Championship Season - Instagram Square (1080x1080)">
-            <ChampionshipCard />
-          </CardWrapper>
-
-          {/* App Interface Detail */}
-          <CardWrapper title="Session Rating UI - Instagram Square (1080x1080)">
-            <SessionRatingCard />
-          </CardWrapper>
-
-          {/* Mechanic Perspective */}
-          <CardWrapper title="Mechanic's Tool - Instagram Square (1080x1080)">
-            <MechanicPerspectiveCard />
-          </CardWrapper>
-
-          {/* Series Traveler */}
-          <CardWrapper title="Multi-Track Racing - Instagram Square (1080x1080)">
-            <SeriesTravelerCard />
-          </CardWrapper>
-
-          {/* Competitive Edge */}
-          <CardWrapper title="Competitive Advantage - Instagram Square (1080x1080)">
-            <CompetitiveEdgeCard />
-          </CardWrapper>
-
-          {/* App Animation Tease */}
-          <CardWrapper title="Scan Demo - Instagram Square (1080x1080)">
-            <ScanDemoCard />
-          </CardWrapper>
-
-          {/* Budget Racer */}
-          <CardWrapper title="Racing on a Budget - Instagram Square (1080x1080)">
-            <BudgetRacerCard />
-          </CardWrapper>
-
-          {/* Track Day Prep */}
-          <CardWrapper title="Pre-Race Prep - Instagram Square (1080x1080)">
-            <TrackDayPrepCard />
-          </CardWrapper>
-
-          {/* Multi-Kart Family */}
-          <CardWrapper title="Multi-Kart Teams - Instagram Square (1080x1080)">
-            <MultiKartFamilyCard />
-          </CardWrapper>
-
-          {/* Rental vs Own */}
-          <CardWrapper title="Own Your Data - Instagram Square (1080x1080)">
-            <OwnYourDataCard />
-          </CardWrapper>
-
-          {/* Launch Story */}
-          <CardWrapper title="Why We Built This - Instagram Square (1080x1080)">
-            <WhyWeBuiltCard />
-          </CardWrapper>
+          {/* ── DATA ──────────────────────────────────────────── */}
+          <CardWrapper activeTab={tab} category="Data" title="By The Numbers (1080x1080)"><StatsGridCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Pain Point (1080x1080)"><PainPointCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="ROI Message (1080x1080)"><ROICard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="ROI Math Explained (1080x1080)"><ROIMathCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Maximize Tire Investment (1080x1080)"><MaximizeTireLifeCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Data Driven Racing (1080x1080)"><DataDrivenCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Track Memory (1080x1080)"><TrackMemoryCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Problem Agitation (1080x1080)"><ProblemAgitationCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Tech Inspection Comparison (1080x1080)"><TechComparisonCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Stop Early Replacement (1080x1080)"><StopEarlyReplacementCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Money Left on Track (1080x1080)"><MoneyOnTrackCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Racing on a Budget (1080x1080)"><BudgetRacerCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Own Your Data (1080x1080)"><OwnYourDataCard /></CardWrapper>
         </div>
       </div>
     </div>
@@ -3441,12 +3302,17 @@ function TechComparisonCard() {
   );
 }
 
-function CardWrapper({ title, children }: { title: string; children: React.ReactNode }) {
+function CardWrapper({ title, children, category, activeTab }: {
+  title: string;
+  children: React.ReactNode;
+  category?: SocialTab;
+  activeTab?: SocialTab;
+}) {
+  if (category && activeTab && activeTab !== 'All' && activeTab !== category) return null;
   const cardRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [exporting, setExporting] = useState(false);
-  const [scale, setScale] = useState(1);
-  const [scaledHeight, setScaledHeight] = useState<number | null>(null);
+  const [preview, setPreview] = useState({ scale: 1, visW: 0, visH: 0 });
 
   useEffect(() => {
     const update = () => {
@@ -3454,8 +3320,7 @@ function CardWrapper({ title, children }: { title: string; children: React.React
       const card = cardRef.current;
       if (!container || !card) return;
       const s = Math.min(1, container.clientWidth / card.scrollWidth);
-      setScale(s);
-      setScaledHeight(card.scrollHeight * s);
+      setPreview({ scale: s, visW: card.scrollWidth * s, visH: card.scrollHeight * s });
     };
     const ro = new ResizeObserver(update);
     if (containerRef.current) ro.observe(containerRef.current);
@@ -3534,22 +3399,272 @@ function CardWrapper({ title, children }: { title: string; children: React.React
       </div>
       <div ref={containerRef}>
         <div style={{
-          position: 'relative',
-          height: scaledHeight !== null ? `${scaledHeight}px` : undefined,
+          width: preview.visW > 0 ? `${preview.visW}px` : '100%',
+          height: preview.visH > 0 ? `${preview.visH}px` : undefined,
           overflow: 'hidden'
         }}>
           <div style={{
-            transform: scale < 1 ? `scale(${scale})` : undefined,
-            transformOrigin: 'top left',
-            position: scale < 1 ? 'absolute' : undefined,
-            top: 0,
-            left: 0
+            transform: preview.scale < 1 ? `scale(${preview.scale})` : undefined,
+            transformOrigin: 'top left'
           }}>
             <div ref={cardRef} className="flex justify-center">
               {children}
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── NEW CARDS ──────────────────────────────────────────────────────── */
+
+function DownloadCTACard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--page-bg)', borderRadius: '20px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '48px' }}>
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 80% 60% at 50% 100%, oklch(0.72 0.16 155 / 0.2) 0%, transparent 60%)' }} />
+      <div style={{ position: 'relative', textAlign: 'center' }}>
+        <img src={logoImg} alt="Tire Track" style={{ height: '36px', marginBottom: '28px' }} />
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '3rem', lineHeight: 1.05, color: 'var(--primary-text)', textTransform: 'uppercase', marginBottom: '12px' }}>
+          Free to download.<br /><span style={{ color: 'var(--accent)' }}>Free to start.</span>
+        </h2>
+        <p style={{ fontSize: '1.1rem', color: 'var(--muted-text)', lineHeight: 1.6, marginBottom: '32px', maxWidth: '380px' }}>
+          Track your kart tires from day one — no credit card required.
+        </p>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          <div style={{ background: 'var(--accent)', color: 'var(--page-bg)', padding: '12px 28px', borderRadius: '100px', fontWeight: 700, fontSize: '1rem' }}>
+            Download Now
+          </div>
+          <div style={{ border: '1px solid var(--strong-border)', color: 'var(--muted-text)', padding: '12px 28px', borderRadius: '100px', fontSize: '1rem' }}>
+            TireTrack.io
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RaceDayReadyCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--page-bg)', borderRadius: '20px', overflow: 'hidden', position: 'relative', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 44px), repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 44px)' }} />
+      <div style={{ position: 'relative' }}>
+        <img src={logoImg} alt="Tire Track" style={{ height: '24px', marginBottom: '28px' }} />
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '2.8rem', lineHeight: 1.05, color: 'var(--primary-text)', textTransform: 'uppercase', marginBottom: '10px' }}>
+          Race morning.<br /><span style={{ color: 'var(--accent)' }}>Zero guesswork.</span>
+        </h2>
+        <p style={{ fontSize: '1rem', color: 'var(--muted-text)', lineHeight: 1.65, maxWidth: '380px' }}>
+          Open the trailer. Scan the tire. Know if it's ready to race — in two seconds.
+        </p>
+      </div>
+      <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        {[
+          { label: 'Set A — MG SH · 1 session', status: 'FRESH', color: 'var(--tire-fresh)' },
+          { label: 'Set B — MG SH · 4 sessions', status: 'MID', color: 'var(--tire-mid)' },
+          { label: 'Set C — VEGA XH · 8 sessions', status: 'WORN', color: 'var(--tire-worn)' },
+        ].map(({ label, status, color }) => (
+          <div key={status} style={{ background: 'var(--card-surface)', border: '1px solid var(--border)', borderRadius: '10px', padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.9rem', color: 'var(--muted-text)' }}>{label}</span>
+            <span style={{ background: color, color: 'var(--page-bg)', padding: '3px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: 700 }}>{status}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function QuickScanCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'linear-gradient(135deg, var(--card-surface) 0%, var(--page-bg) 100%)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+      <img src={logoImg} alt="Tire Track" style={{ height: '24px', marginBottom: '32px' }} />
+      <div style={{ width: '80px', height: '80px', borderRadius: '20px', background: 'var(--accent-soft)', border: '2px solid var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '28px', fontSize: '2rem' }}>⬛</div>
+      <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '2.8rem', color: 'var(--primary-text)', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '12px' }}>
+        Scan.<br /><span style={{ color: 'var(--accent)' }}>Find. Know.</span>
+      </h2>
+      <p style={{ fontSize: '1.05rem', color: 'var(--muted-text)', lineHeight: 1.65, maxWidth: '360px', marginBottom: '28px' }}>
+        Point your camera at any tire's barcode and get its full history — heat cycles, last session, wear status — instantly.
+      </p>
+      <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.8rem', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>2 seconds · Zero typing · TireTrack.io</div>
+    </div>
+  );
+}
+
+function BeforeAfterCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--page-bg)', borderRadius: '20px', overflow: 'hidden', display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+      <div style={{ background: 'rgba(200,50,50,0.08)', padding: '40px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', borderRight: '1px solid var(--border)' }}>
+        <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'oklch(0.68 0.22 25)' }}>Before</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {['Sticky notes in the trailer', 'Text messages to the mechanic', '"I think it was 3 sessions?"', 'Wrong tires on race day', '$400 set binned too early'].map(t => (
+            <div key={t} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+              <span style={{ color: 'oklch(0.68 0.22 25)', flexShrink: 0 }}>✕</span>
+              <span style={{ fontSize: '0.82rem', color: 'var(--muted-text)', lineHeight: 1.4 }}>{t}</span>
+            </div>
+          ))}
+        </div>
+        <div />
+      </div>
+      <div style={{ background: 'oklch(0.72 0.16 155 / 0.06)', padding: '40px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent)' }}>After</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {['Scan any tire in 2 seconds', 'Team sees same data', 'Exact heat cycle count', 'Right tires every time', 'Max every dollar spent'].map(t => (
+            <div key={t} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+              <span style={{ color: 'var(--accent)', flexShrink: 0 }}>✓</span>
+              <span style={{ fontSize: '0.82rem', color: 'var(--primary-text)', lineHeight: 1.4 }}>{t}</span>
+            </div>
+          ))}
+        </div>
+        <img src={logoImg} alt="Tire Track" style={{ height: '18px' }} />
+      </div>
+    </div>
+  );
+}
+
+function SeasonRecapCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--card-surface)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <img src={logoImg} alt="Tire Track" style={{ height: '22px', marginBottom: '24px' }} />
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '2.2rem', color: 'var(--primary-text)', textTransform: 'uppercase', marginBottom: '8px' }}>Your 2025 Season<br /><span style={{ color: 'var(--accent)' }}>by the numbers.</span></h2>
+        <p style={{ fontSize: '0.95rem', color: 'var(--muted-text)', lineHeight: 1.6 }}>Every set you ran. Every session you logged. All of it, tracked.</p>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+        {[
+          { n: '6', label: 'Tire Sets' },
+          { n: '38', label: 'Sessions Logged' },
+          { n: '4', label: 'Tracks Visited' },
+          { n: '$0', label: 'Sets Over-run' },
+        ].map(({ n, label }) => (
+          <div key={label} style={{ background: 'var(--input-surface)', borderRadius: '12px', padding: '16px', border: '1px solid var(--border)' }}>
+            <div style={{ fontFamily: 'var(--font-chakra)', fontWeight: 700, fontSize: '2rem', color: 'var(--accent)', lineHeight: 1 }}>{n}</div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--dim-text)', marginTop: '4px' }}>{label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TireVaultCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--page-bg)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px' }}>
+        <img src={logoImg} alt="Tire Track" style={{ height: '22px' }} />
+        <span style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.7rem', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Your Garage</span>
+      </div>
+      <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '2.4rem', color: 'var(--primary-text)', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '24px' }}>Every tire.<br /><span style={{ color: 'var(--accent)' }}>Every session.</span><br />One place.</h2>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'flex-end' }}>
+        {[
+          { name: 'MG SH #1', compound: 'Red · Set A', cycles: '1 cycle', status: 'FRESH', color: 'var(--tire-fresh)' },
+          { name: 'MG SH #2', compound: 'Red · Set B', cycles: '4 cycles', status: 'MID', color: 'var(--tire-mid)' },
+          { name: 'VEGA XH #1', compound: 'Yellow · Set C', cycles: '8 cycles', status: 'WORN', color: 'var(--tire-worn)' },
+          { name: 'Bridgestone YLC', compound: 'Set D', cycles: '2 cycles', status: 'FRESH', color: 'var(--tire-fresh)' },
+        ].map(({ name, compound, cycles, status, color }) => (
+          <div key={name} style={{ background: 'var(--card-surface)', border: '1px solid var(--border)', borderRadius: '10px', padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div>
+              <div style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--primary-text)' }}>{name}</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--dim-text)' }}>{compound} · {cycles}</div>
+            </div>
+            <span style={{ background: color, color: 'var(--page-bg)', padding: '2px 9px', borderRadius: '100px', fontSize: '0.65rem', fontWeight: 700 }}>{status}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function FreeTrialCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--page-bg)', borderRadius: '20px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '48px' }}>
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 70% at 50% 50%, oklch(0.72 0.16 155 / 0.12) 0%, transparent 70%)' }} />
+      <div style={{ position: 'relative' }}>
+        <div style={{ display: 'inline-block', background: 'var(--accent)', color: 'var(--page-bg)', padding: '6px 20px', borderRadius: '100px', fontFamily: 'var(--font-chakra)', fontWeight: 700, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '28px' }}>
+          Pro Plan
+        </div>
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '3.5rem', lineHeight: 1, color: 'var(--primary-text)', marginBottom: '8px' }}>14 Days<br /><span style={{ color: 'var(--accent)' }}>Free.</span></h2>
+        <p style={{ fontSize: '1.05rem', color: 'var(--muted-text)', lineHeight: 1.65, marginBottom: '32px', maxWidth: '360px' }}>
+          Unlimited tire sets, lap time tracking, pressure logs, weather per session. Try everything — no card required.
+        </p>
+        <img src={logoImg} alt="Tire Track" style={{ height: '22px', marginBottom: '16px' }} />
+        <div style={{ fontSize: '0.875rem', color: 'var(--dim-text)' }}>TireTrack.io · $5/mo after trial</div>
+      </div>
+    </div>
+  );
+}
+
+function GaragePhoneCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'linear-gradient(135deg, var(--card-surface) 0%, var(--page-bg) 100%)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <img src={logoImg} alt="Tire Track" style={{ height: '22px' }} />
+      <div>
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '2.8rem', lineHeight: 1.1, color: 'var(--primary-text)', textTransform: 'uppercase', marginBottom: '12px' }}>
+          Your garage.<br /><span style={{ color: 'var(--accent)' }}>Always in your pocket.</span>
+        </h2>
+        <p style={{ fontSize: '1.05rem', color: 'var(--muted-text)', lineHeight: 1.65, maxWidth: '380px' }}>
+          No clipboards, no spreadsheets, no sticky notes. Just open the app and know.
+        </p>
+      </div>
+      <div style={{ display: 'flex', gap: '12px' }}>
+        <img src={appScreen1} alt="App" style={{ width: '160px', borderRadius: '18px', boxShadow: '0 20px 48px rgba(0,0,0,0.7)' }} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', justifyContent: 'center' }}>
+          {['Barcode scanning', 'Heat cycle counter', 'Session notes', 'Team sharing'].map(f => (
+            <div key={f} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+              <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', flexShrink: 0 }} />
+              <span style={{ fontSize: '0.875rem', color: 'var(--primary-text)' }}>{f}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function NeverGuessCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--page-bg)', borderRadius: '20px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '48px' }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 44px), repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 44px)' }} />
+      <div style={{ position: 'relative' }}>
+        <img src={logoImg} alt="Tire Track" style={{ height: '24px', marginBottom: '36px' }} />
+        <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--dim-text)', marginBottom: '12px', textDecoration: 'line-through' }}>Guess. Hope. Lose.</div>
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '3.2rem', lineHeight: 1.05, color: 'var(--primary-text)', textTransform: 'uppercase', marginBottom: '16px' }}>
+          Know.<br /><span style={{ color: 'var(--accent)' }}>Win more.</span>
+        </h2>
+        <p style={{ fontSize: '1.05rem', color: 'var(--muted-text)', lineHeight: 1.65, maxWidth: '360px', marginBottom: '32px' }}>
+          Tire Track turns your most expensive variable into your most reliable data point.
+        </p>
+        <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.8rem', color: 'var(--dim-text)', letterSpacing: '0.06em' }}>TireTrack.io</div>
+      </div>
+    </div>
+  );
+}
+
+function TeamAlignedCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--card-surface)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <img src={logoImg} alt="Tire Track" style={{ height: '22px', marginBottom: '24px' }} />
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '2.5rem', color: 'var(--primary-text)', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '10px' }}>
+          Driver. Mechanic.<br />Coach. <span style={{ color: 'var(--accent)' }}>One garage.</span>
+        </h2>
+        <p style={{ fontSize: '1rem', color: 'var(--muted-text)', lineHeight: 1.65 }}>
+          The Team plan gives everyone on your crew real-time access to the same tire data. No more wrong sets.
+        </p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        {[
+          { role: 'Driver', task: 'Checks wear status before practice' },
+          { role: 'Mechanic', task: 'Logs session after every run' },
+          { role: 'Coach', task: 'Reviews tire history between sessions' },
+        ].map(({ role, task }) => (
+          <div key={role} style={{ display: 'flex', gap: '12px', alignItems: 'center', background: 'var(--input-surface)', borderRadius: '10px', padding: '12px 14px' }}>
+            <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'var(--accent-soft)', border: '1px solid var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: 700, color: 'var(--accent)', flexShrink: 0 }}>{role[0]}</div>
+            <div>
+              <div style={{ fontWeight: 600, fontSize: '0.825rem', color: 'var(--primary-text)' }}>{role}</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--dim-text)' }}>{task}</div>
+            </div>
+          </div>
+        ))}
+        <div style={{ textAlign: 'right', fontSize: '0.8rem', color: 'var(--accent)', fontWeight: 600 }}>Team Plan · $19/mo</div>
       </div>
     </div>
   );

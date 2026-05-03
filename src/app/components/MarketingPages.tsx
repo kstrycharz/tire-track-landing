@@ -92,6 +92,17 @@ function PageWrapper({ title, children }: { title: string; children: React.React
     setExporting(true);
     try {
       await document.fonts.ready;
+      // Wait for every image in the card to fully load before capturing
+      await Promise.all(
+        Array.from(ref.current.querySelectorAll('img')).map(img =>
+          img.complete && img.naturalWidth > 0
+            ? Promise.resolve()
+            : new Promise<void>(res => {
+                img.addEventListener('load', () => res(), { once: true });
+                img.addEventListener('error', () => res(), { once: true });
+              })
+        )
+      );
       const blob = await toBlob(ref.current, { pixelRatio: 2 });
       if (!blob) throw new Error('No blob');
       const filename = `${title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`;
@@ -246,7 +257,8 @@ function AppStoreHeroPage() {
           borderRadius: '20px',
           padding: '6px',
           boxShadow: '0 24px 64px rgba(0,0,0,0.7)',
-          transform: 'rotate(-4deg) translateY(8px)'
+          transform: 'rotate(-4deg) translateY(8px)',
+          willChange: 'transform'
         }}>
           <img loading="eager" src={appScreen3} alt="Scan" style={{ width: '100px', borderRadius: '14px', display: 'block' }} />
         </div>
@@ -264,7 +276,8 @@ function AppStoreHeroPage() {
           borderRadius: '20px',
           padding: '6px',
           boxShadow: '0 24px 64px rgba(0,0,0,0.7)',
-          transform: 'rotate(4deg) translateY(8px)'
+          transform: 'rotate(4deg) translateY(8px)',
+          willChange: 'transform'
         }}>
           <img loading="eager" src={appScreen2} alt="Session" style={{ width: '100px', borderRadius: '14px', display: 'block' }} />
         </div>
@@ -314,7 +327,8 @@ function ProductHuntBanner() {
           width: '90px',
           borderRadius: '14px',
           boxShadow: '0 20px 48px rgba(0,0,0,0.7)',
-          transform: 'rotate(-3deg)'
+          transform: 'rotate(-3deg)',
+          willChange: 'transform'
         }} />
         <img loading="eager" src={appScreen1} alt="" style={{
           width: '110px',
@@ -465,7 +479,8 @@ function LaunchAnnouncementPage() {
           width: '140px',
           borderRadius: '18px',
           boxShadow: '0 24px 56px rgba(0,0,0,0.7)',
-          transform: 'rotate(-5deg) translateY(12px)'
+          transform: 'rotate(-5deg) translateY(12px)',
+          willChange: 'transform'
         }} />
         <img loading="eager" src={appScreen1} alt="" style={{
           width: '175px',
@@ -678,7 +693,8 @@ function FeatureShowcasePage() {
             width: '130px',
             borderRadius: '18px',
             boxShadow: '0 20px 48px rgba(0,0,0,0.7)',
-            transform: 'rotate(-3deg) translateY(16px)'
+            transform: 'rotate(-3deg) translateY(16px)',
+            willChange: 'transform'
           }} />
           <img loading="eager" src={appScreen1} alt="" style={{
             width: '160px',

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { toBlob } from 'html-to-image';
 import { Download, Loader2 } from 'lucide-react';
 import logoImg from '../../imports/logo.png';
@@ -80,7 +80,25 @@ export function MarketingPages() {
 
 function PageWrapper({ title, children }: { title: string; children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [exporting, setExporting] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [scaledHeight, setScaledHeight] = useState<number | null>(null);
+
+  useEffect(() => {
+    const update = () => {
+      const container = containerRef.current;
+      const card = ref.current;
+      if (!container || !card) return;
+      const s = Math.min(1, container.clientWidth / card.scrollWidth);
+      setScale(s);
+      setScaledHeight(card.scrollHeight * s);
+    };
+    const ro = new ResizeObserver(update);
+    if (containerRef.current) ro.observe(containerRef.current);
+    update();
+    return () => ro.disconnect();
+  }, []);
 
   const handleDownload = async () => {
     if (!ref.current || exporting) return;
@@ -150,9 +168,23 @@ function PageWrapper({ title, children }: { title: string; children: React.React
           {exporting ? 'Exporting…' : 'Download PNG'}
         </button>
       </div>
-      <div className="flex justify-center p-6">
-        <div ref={ref} style={{ maxWidth: '100%' }}>
-          {children}
+      <div className="p-6" ref={containerRef}>
+        <div style={{
+          position: 'relative',
+          height: scaledHeight !== null ? `${scaledHeight}px` : undefined,
+          overflow: 'hidden'
+        }}>
+          <div style={{
+            transform: scale < 1 ? `scale(${scale})` : undefined,
+            transformOrigin: 'top left',
+            position: scale < 1 ? 'absolute' : undefined,
+            top: 0,
+            left: 0
+          }}>
+            <div ref={ref}>
+              {children}
+            </div>
+          </div>
         </div>
       </div>
     </div>

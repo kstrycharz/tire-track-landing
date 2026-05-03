@@ -1,6 +1,6 @@
 import { Download, Loader2 } from 'lucide-react';
 import { toBlob } from 'html-to-image';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import logoImg from '../../imports/logo.png';
 import appScreen1 from '../../imports/IMG_1411.PNG';
 import appScreen2 from '../../imports/IMG_1409.PNG';
@@ -3443,7 +3443,25 @@ function TechComparisonCard() {
 
 function CardWrapper({ title, children }: { title: string; children: React.ReactNode }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [exporting, setExporting] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [scaledHeight, setScaledHeight] = useState<number | null>(null);
+
+  useEffect(() => {
+    const update = () => {
+      const container = containerRef.current;
+      const card = cardRef.current;
+      if (!container || !card) return;
+      const s = Math.min(1, container.clientWidth / card.scrollWidth);
+      setScale(s);
+      setScaledHeight(card.scrollHeight * s);
+    };
+    const ro = new ResizeObserver(update);
+    if (containerRef.current) ro.observe(containerRef.current);
+    update();
+    return () => ro.disconnect();
+  }, []);
 
   const handleDownload = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -3514,8 +3532,24 @@ function CardWrapper({ title, children }: { title: string; children: React.React
           </button>
         </div>
       </div>
-      <div className="flex justify-center" ref={cardRef}>
-        {children}
+      <div ref={containerRef}>
+        <div style={{
+          position: 'relative',
+          height: scaledHeight !== null ? `${scaledHeight}px` : undefined,
+          overflow: 'hidden'
+        }}>
+          <div style={{
+            transform: scale < 1 ? `scale(${scale})` : undefined,
+            transformOrigin: 'top left',
+            position: scale < 1 ? 'absolute' : undefined,
+            top: 0,
+            left: 0
+          }}>
+            <div ref={cardRef} className="flex justify-center">
+              {children}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

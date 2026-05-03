@@ -100,6 +100,10 @@ export function SocialMediaCards() {
           <CardWrapper activeTab={tab} category="Quotes" title="Simple Truth (1080x1080)"><SimpleTruthCard /></CardWrapper>
           <CardWrapper activeTab={tab} category="Quotes" title="Why We Built This (1080x1080)"><WhyWeBuiltCard /></CardWrapper>
           <CardWrapper activeTab={tab} category="Quotes" title="Twitter/X - Landscape (1200x675)"><TwitterCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Paddock Secret — Square (1080x1080)"><PaddockSecretCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Saved My Race — Square (1080x1080)"><SavedMyRaceCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Used to Use a Notebook — Square (1080x1080)"><UsedToNotebookCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Quotes" title="Every Karter Needs This — Square (1080x1080)"><EveryKarterCard /></CardWrapper>
 
           {/* ── FEATURES ──────────────────────────────────────── */}
           <CardWrapper activeTab={tab} category="Features" title="Feature Highlight (1080x1080)"><FeatureCard /></CardWrapper>
@@ -115,6 +119,10 @@ export function SocialMediaCards() {
           <CardWrapper activeTab={tab} category="Features" title="Multi-Kart Teams (1080x1080)"><MultiKartFamilyCard /></CardWrapper>
           <CardWrapper activeTab={tab} category="Features" title="For Parents & Mechanics (1080x1080)"><ParentMechanicCard /></CardWrapper>
           <CardWrapper activeTab={tab} category="Features" title="Pre-Race Prep (1080x1080)"><TrackDayPrepCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="10-Second Log — Square (1080x1080)"><TenSecondLogCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Pressure. Compound. Cycles. — Square (1080x1080)"><ThreePillarsCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="Post-Session Ritual — Square (1080x1080)"><PostSessionCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Features" title="One App. Every Kart. — Square (1080x1080)"><OneAppCard /></CardWrapper>
 
           {/* ── DATA ──────────────────────────────────────────── */}
           <CardWrapper activeTab={tab} category="Data" title="By The Numbers (1080x1080)"><StatsGridCard /></CardWrapper>
@@ -130,6 +138,10 @@ export function SocialMediaCards() {
           <CardWrapper activeTab={tab} category="Data" title="Money Left on Track (1080x1080)"><MoneyOnTrackCard /></CardWrapper>
           <CardWrapper activeTab={tab} category="Data" title="Racing on a Budget (1080x1080)"><BudgetRacerCard /></CardWrapper>
           <CardWrapper activeTab={tab} category="Data" title="Own Your Data (1080x1080)"><OwnYourDataCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Tires = Your Biggest Variable — Square (1080x1080)"><BiggestVariableCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="8 Sets 3 Karts 1 Season — Square (1080x1080)"><ScaleCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="The Average Racer — Square (1080x1080)"><AverageRacerCard /></CardWrapper>
+          <CardWrapper activeTab={tab} category="Data" title="Cost Per Heat Cycle — Square (1080x1080)"><CostPerCycleCard /></CardWrapper>
         </div>
       </div>
     </div>
@@ -3943,6 +3955,302 @@ function TrackEverySetCard() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+/* ─── Paddock Secret ─────────────────────────────────────────────────────── */
+function PaddockSecretCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: '#0A0B0D', borderRadius: '20px', overflow: 'hidden', padding: '52px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', position: 'relative' }}>
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(ellipse at 80% 20%, rgba(100,210,130,0.08) 0%, transparent 60%)', pointerEvents: 'none' }} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <img src={logoImg} alt="Tire Track" style={{ height: '20px', opacity: 0.7 }} />
+      </div>
+      <div>
+        <div style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.3)', fontFamily: 'Georgia, serif', marginBottom: '16px' }}>"</div>
+        <p style={{ fontSize: '1.35rem', color: '#fff', lineHeight: 1.55, fontStyle: 'italic', marginBottom: '24px', fontFamily: 'Georgia, serif' }}>
+          Everyone in my class wonders why I never make the wrong compound call. I just smile.<br /><br />
+          <span style={{ color: 'var(--accent)' }}>Tire Track is my paddock secret.</span>
+        </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--accent-soft)', border: '1px solid var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem' }}>🏆</div>
+          <div>
+            <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--primary-text)' }}>Regional Champion, 2024</div>
+            <div style={{ fontSize: '0.72rem', color: 'var(--dim-text)' }}>Rotax Max Driver</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Saved My Race ──────────────────────────────────────────────────────── */
+function SavedMyRaceCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--card-surface)', borderRadius: '20px', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+      <div style={{ flex: 1, background: 'linear-gradient(135deg, #0f1a10 0%, #0e1812 100%)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px', gap: '20px' }}>
+        <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 900, fontSize: '4rem', color: 'var(--accent)', textTransform: 'uppercase', lineHeight: 0.9, letterSpacing: '-0.02em' }}>Saved<br />my race.</div>
+        <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, maxWidth: '360px' }}>
+          Tire Track flagged that my front-left had 11 heat cycles on it — I swapped to a fresh set before qualifying. Podium.<br /><br />Without it I'd have run worn rubber and not known.
+        </p>
+      </div>
+      <div style={{ padding: '20px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--card-surface)', borderTop: '1px solid var(--border)' }}>
+        <img src={logoImg} alt="Tire Track" style={{ height: '18px', opacity: 0.8 }} />
+        <span style={{ fontSize: '0.72rem', color: 'var(--dim-text)' }}>Real story, real result.</span>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Used to Use a Notebook ─────────────────────────────────────────────── */
+function UsedToNotebookCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: '#111318', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <img src={logoImg} alt="Tire Track" style={{ height: '20px' }} />
+      <div style={{ display: 'flex', gap: '24px', alignItems: 'stretch' }}>
+        {/* BEFORE */}
+        <div style={{ flex: 1, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '20px 16px' }}>
+          <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.62rem', color: 'var(--dim-text)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>Before</div>
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {['Soggy notebook', 'Wrong compound', 'Guessing cycles', 'Lost data'].map(t => (
+              <li key={t} style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', gap: '6px' }}><span style={{ color: '#e53e3e', fontWeight: 700 }}>✕</span> {t}</li>
+            ))}
+          </ul>
+        </div>
+        {/* AFTER */}
+        <div style={{ flex: 1, background: 'rgba(100,210,130,0.07)', border: '1px solid rgba(100,210,130,0.2)', borderRadius: '12px', padding: '20px 16px' }}>
+          <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.62rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>After</div>
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {['Instant log', 'Exact compound', 'Cycle counter', 'Full history'].map(t => (
+              <li key={t} style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.8)', display: 'flex', alignItems: 'center', gap: '6px' }}><span style={{ color: 'var(--accent)', fontWeight: 700 }}>✓</span> {t}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '1.5rem', color: 'var(--primary-text)', marginBottom: '4px' }}>I used to use a notebook.</div>
+        <div style={{ fontSize: '0.85rem', color: 'var(--muted-text)' }}>Then I found Tire Track. There's no going back.</div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Every Karter Needs This ────────────────────────────────────────────── */
+function EveryKarterCard() {
+  const faces = ['🏎️', '👨‍🔧', '👨‍👦', '🧑‍🏫'];
+  const roles = ['Driver', 'Mechanic', 'Parent', 'Coach'];
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--page-bg)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <img src={logoImg} alt="Tire Track" style={{ height: '20px' }} />
+      <div>
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 900, fontSize: '2.8rem', color: 'var(--primary-text)', textTransform: 'uppercase', lineHeight: 1.05, marginBottom: '12px' }}>
+          Everyone at the track<br /><span style={{ color: 'var(--accent)' }}>needs this app.</span>
+        </h2>
+        <p style={{ fontSize: '0.9rem', color: 'var(--muted-text)', lineHeight: 1.65 }}>Doesn't matter if you're turning laps or turning wrenches — Tire Track keeps the whole team on the same page.</p>
+      </div>
+      <div style={{ display: 'flex', gap: '12px' }}>
+        {faces.map((f, i) => (
+          <div key={i} style={{ flex: 1, background: 'var(--card-surface)', border: '1px solid var(--border)', borderRadius: '12px', padding: '14px 8px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+            <span style={{ fontSize: '1.5rem' }}>{f}</span>
+            <span style={{ fontSize: '0.68rem', fontWeight: 600, color: 'var(--muted-text)', textAlign: 'center' }}>{roles[i]}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── 10-Second Log ──────────────────────────────────────────────────────── */
+function TenSecondLogCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: '#0A0B0D', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '28px', position: 'relative' }}>
+      <div style={{ position: 'absolute', right: '-60px', top: '50%', transform: 'translateY(-50%)', width: '300px', height: '300px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(100,210,130,0.09) 0%, transparent 70%)', pointerEvents: 'none', willChange: 'transform' }} />
+      <img src={logoImg} alt="Tire Track" style={{ height: '20px' }} />
+      <div>
+        <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 900, fontSize: '5.5rem', color: 'var(--accent)', lineHeight: 1, marginBottom: '4px' }}>10s</div>
+        <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '2rem', color: '#fff', textTransform: 'uppercase', marginBottom: '16px' }}>to log a session.</div>
+        <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, maxWidth: '360px' }}>
+          Tap compound. Set pressure. Done. Tire Track stores everything else — heat cycles, session count, wear status — automatically.
+        </p>
+      </div>
+      <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>No notebooks. No spreadsheets. No hassle.</div>
+    </div>
+  );
+}
+
+/* ─── Three Pillars ──────────────────────────────────────────────────────── */
+function ThreePillarsCard() {
+  const pillars = [
+    { label: 'Pressure', desc: 'Log cold & hot. See trends over sessions.', icon: '🔢' },
+    { label: 'Compound', desc: 'Always know exactly what rubber is fitted.', icon: '🧪' },
+    { label: 'Cycles', desc: 'Auto-counted every session, never missed.', icon: '🔄' },
+  ];
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--card-surface)', borderRadius: '20px', overflow: 'hidden', padding: '44px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <img src={logoImg} alt="Tire Track" style={{ height: '20px', marginBottom: '20px' }} />
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 800, fontSize: '2.2rem', color: 'var(--primary-text)', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '6px' }}>
+          Three things that win races.
+        </h2>
+        <p style={{ fontSize: '0.82rem', color: 'var(--muted-text)', marginBottom: '4px' }}>Track all of them in one place.</p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        {pillars.map(p => (
+          <div key={p.label} style={{ display: 'flex', gap: '14px', alignItems: 'center', background: 'var(--input-surface)', borderRadius: '12px', padding: '14px 16px' }}>
+            <div style={{ fontSize: '1.4rem', width: '36px', textAlign: 'center', flexShrink: 0 }}>{p.icon}</div>
+            <div>
+              <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 700, fontSize: '1.05rem', color: 'var(--accent)', textTransform: 'uppercase' }}>{p.label}</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--muted-text)' }}>{p.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Post Session Ritual ────────────────────────────────────────────────── */
+function PostSessionCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'linear-gradient(160deg, #0f1117 0%, #0A0B0D 100%)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <img src={logoImg} alt="Tire Track" style={{ height: '20px' }} />
+      <div>
+        <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.68rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 700, marginBottom: '10px' }}>Post-race habit</div>
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 800, fontSize: '2.7rem', color: '#fff', textTransform: 'uppercase', lineHeight: 1.05, marginBottom: '16px' }}>
+          Checkered flag.<br />Open Tire Track.<br /><span style={{ color: 'var(--accent)' }}>Log the session.</span>
+        </h2>
+        <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>
+          The best teams treat data like a ritual. Every session logged builds a picture that wins championships — 30 seconds after the flag drops.
+        </p>
+      </div>
+      <div style={{ display: 'flex', gap: '6px' }}>
+        {['Session 1', 'Session 2', 'Session 3', 'Qualifying', 'Race'].map((s, i) => (
+          <div key={s} style={{ flex: 1, height: '4px', borderRadius: '2px', background: i < 4 ? 'var(--accent)' : 'rgba(255,255,255,0.12)' }} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── One App Card ───────────────────────────────────────────────────────── */
+function OneAppCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--page-bg)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <img src={logoImg} alt="Tire Track" style={{ height: '20px' }} />
+      <div>
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 900, fontSize: '3rem', color: 'var(--primary-text)', textTransform: 'uppercase', lineHeight: 1, marginBottom: '16px' }}>
+          One app.<br /><span style={{ color: 'var(--accent)' }}>Every kart.</span><br />Any track.
+        </h2>
+        <p style={{ fontSize: '0.9rem', color: 'var(--muted-text)', lineHeight: 1.65, maxWidth: '380px' }}>
+          Running two karts? A rental programme? Tire Track handles unlimited karts, multiple drivers, and every track in your calendar — in one garage.
+        </p>
+      </div>
+      <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+        {[{ n: '∞', l: 'Karts' }, { n: '∞', l: 'Tracks' }, { n: '∞', l: 'Sessions' }, { n: '14d', l: 'Free trial' }].map(({ n, l }) => (
+          <div key={l} style={{ flex: '1 1 40%', background: 'var(--card-surface)', border: '1px solid var(--border)', borderRadius: '10px', padding: '14px 16px' }}>
+            <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 800, fontSize: '1.8rem', color: 'var(--accent)' }}>{n}</div>
+            <div style={{ fontSize: '0.72rem', color: 'var(--dim-text)', fontWeight: 600 }}>{l}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Biggest Variable Card ──────────────────────────────────────────────── */
+function BiggestVariableCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: '#0A0B0D', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', position: 'relative' }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 50% 0%, rgba(100,210,130,0.06) 0%, transparent 55%)', pointerEvents: 'none' }} />
+      <img src={logoImg} alt="Tire Track" style={{ height: '20px' }} />
+      <div>
+        <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 900, fontSize: '1.1rem', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>Unpopular opinion:</div>
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 900, fontSize: '2.8rem', color: '#fff', textTransform: 'uppercase', lineHeight: 1.05, marginBottom: '20px' }}>
+          Tires are your<br />biggest race day<br /><span style={{ color: 'var(--accent)' }}>variable.</span>
+        </h2>
+        <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, maxWidth: '380px' }}>
+          Not your chassis setup. Not your engine. The rubber touching the track — its age, compound, and heat cycles — determines more than anything else. Start tracking it.
+        </p>
+      </div>
+      <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.68rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Tire Track · Free on iPhone</div>
+    </div>
+  );
+}
+
+/* ─── Scale Card ─────────────────────────────────────────────────────────── */
+function ScaleCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--card-surface)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <img src={logoImg} alt="Tire Track" style={{ height: '20px' }} />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}>
+        {[
+          { big: '8', label: 'tire sets tracked this season' },
+          { big: '3', label: 'karts in one garage' },
+          { big: '47', label: 'sessions logged, nothing lost' },
+          { big: '1', label: 'app to manage all of it' },
+        ].map(({ big, label }, i, arr) => (
+          <div key={big} style={{ display: 'flex', alignItems: 'baseline', gap: '14px', padding: '14px 0', borderBottom: i < arr.length - 1 ? '1px solid var(--border)' : 'none' }}>
+            <span style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 900, fontSize: '3rem', color: i === arr.length - 1 ? 'var(--accent)' : 'var(--primary-text)', lineHeight: 1, minWidth: '56px' }}>{big}</span>
+            <span style={{ fontSize: '0.85rem', color: 'var(--muted-text)' }}>{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Average Racer Card ─────────────────────────────────────────────────── */
+function AverageRacerCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--page-bg)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', position: 'relative' }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 60px)', pointerEvents: 'none' }} />
+      <img src={logoImg} alt="Tire Track" style={{ height: '20px' }} />
+      <div>
+        <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.68rem', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '20px' }}>The hard truth</div>
+        <div style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 900, fontSize: '2.3rem', color: '#fff', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '20px' }}>
+          The average karter replaces tires <span style={{ color: '#e53e3e' }}>3 sessions</span> too early.
+        </div>
+        <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>
+          That's money thrown away on instinct instead of data. Tire Track shows you exactly where each set is in its lifecycle — so you retire on performance, not paranoia.
+        </p>
+      </div>
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <div style={{ height: '3px', flex: 1, borderRadius: '2px', background: 'var(--accent)' }} />
+        <span style={{ fontSize: '0.75rem', color: 'var(--accent)', fontWeight: 700 }}>Tire Track · Know when to push.</span>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Cost Per Cycle Card ────────────────────────────────────────────────── */
+function CostPerCycleCard() {
+  return (
+    <div style={{ width: '540px', aspectRatio: '1/1', background: 'var(--card-surface)', borderRadius: '20px', overflow: 'hidden', padding: '48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <img src={logoImg} alt="Tire Track" style={{ height: '20px', marginBottom: '20px' }} />
+        <div style={{ fontFamily: 'var(--font-chakra)', fontSize: '0.68rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, marginBottom: '10px' }}>Quick math</div>
+        <h2 style={{ fontFamily: 'var(--font-rajdhani)', fontWeight: 800, fontSize: '2.2rem', color: 'var(--primary-text)', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '16px' }}>
+          Know your cost<br /><span style={{ color: 'var(--accent)' }}>per heat cycle.</span>
+        </h2>
+      </div>
+      <div style={{ background: 'var(--input-surface)', borderRadius: '14px', padding: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          {[
+            { label: 'Set of MG Reds', value: '£280' },
+            { label: 'Avg usable heat cycles', value: '12' },
+            { label: 'Cost per heat cycle', value: '£23.33', accent: true },
+            { label: 'Cycles wasted by guessing', value: '3 avg', red: true },
+            { label: 'Money saved with Tire Track', value: '~£70/set', accent: true },
+          ].map(({ label, value, accent, red }) => (
+            <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.8rem', color: 'var(--muted-text)' }}>{label}</span>
+              <span style={{ fontSize: '0.875rem', fontWeight: 700, color: accent ? 'var(--accent)' : red ? '#e53e3e' : 'var(--primary-text)' }}>{value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style={{ fontSize: '0.72rem', color: 'var(--dim-text)' }}>Free trial · No credit card needed</div>
     </div>
   );
 }
